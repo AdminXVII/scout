@@ -20,9 +20,10 @@
                 <path d="M230 250c0-11 9-20 20-20s20 9 20 20-9 20-20 20-20-9-20-20z" fill="#F00"/>
                 </svg>-->
             <div id="phase1">
-                <label for="vitesse">Vitesse (lettres/mn)</label>
-                <input type="number" min=0 max=150 value="30" id="vitesse" />
-                <button onclick="phraseAlea()">Generer</button>
+                <label for="vitesse">Vitesse (lettres/min)</label>
+                <input type="number" min=0 max=150 value="30" id="vitesse" style="width: 5em;text-align: center;display:inline-block" /><br/>
+                <input type="text" id="phrase" placeholder="Phrase"/><br/>
+                <button onclick="phrase(document.getElementById('phrase').value)">Transmettre</button> ou <button onclick="phraseAlea()" disabled>Aléatoire</button>
             </div>
             <div style="display: none" id="phase2">
                 <input type="text" id="texte" placeholder="texte"/>
