@@ -39,7 +39,9 @@ function setBras(bras,delay,delayRestart){
     }, delay + delayRestart));
 }
 
-function phrase(phrase,deltaDelay){
+function phrase(phrase){
+    vitesse = parseInt(document.getElementById("vitesse").value);
+    deltaDelay = 60000/vitesse;
     isPrevNum = false;
     var codes = [];
     phrase = phrase.toLowerCase();
@@ -53,8 +55,8 @@ function phrase(phrase,deltaDelay){
             codes.push([0, 0]);
         }
     }
-    brasG.style.transition = deltaDelay/4+"ms";
-    brasD.style.transition = deltaDelay/4+"ms";
+    brasG.style.transition = Math.min(deltaDelay/4, 500)+"ms";
+    brasD.style.transition = Math.min(deltaDelay/4, 500)+"ms";
     var delay = 0
     for (; codes.length > 0;) {
         bras = codes.shift();
@@ -70,11 +72,9 @@ function phraseAlea(){
     rawFile.onreadystatechange = function() {
         if (rawFile.readyState === 4 && rawFile.status == "200") {
             text = JSON.parse(rawFile.responseText);
-            vitesse = parseInt(document.getElementById("vitesse").value);
             document.getElementById("phase1").style.display = "none";
             document.getElementById("phase2").style.display = "block";
-            deltaDelay = 60000/vitesse;
-            phrase(text,deltaDelay)
+            phrase(text)
         }
     }
     rawFile.send(null);
